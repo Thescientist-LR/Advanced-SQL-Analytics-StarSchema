@@ -1,0 +1,44 @@
+# 🗄️ Advanced SQL Analytics & Relational Database Design
+
+## 📌 Project Overview
+This project demonstrates backend database design and advanced SQL querying techniques using a normalized Star Schema (`dim_customers` and `fact_orders`). The analytical queries leverage CTEs (Common Table Expressions) and SQL Window Functions to extract critical business metrics such as customer rankings, MoM revenue growth, and regional cumulative sales.
+
+---
+
+## 🏗️ Data Architecture (Star Schema)
+* **`dim_customers`**: Stores customer attributes, market segment, and regional location (`PRIMARY KEY: customer_id`).
+* **`fact_orders`**: Captures individual transactional records, total spend, and order dates (`FOREIGN KEY: customer_id`).
+
+---
+
+## 🚀 Key SQL Analytical Queries
+
+### 1. Customer Spending Rank Within Segment
+* **Technique:** `CTE` + `DENSE_RANK()`
+* **Business Value:** Identifies top-spending customers categorized by business segment without skipping rank positions.
+
+### 2. Month-over-Month (MoM) Revenue Growth
+* **Technique:** `CTE` + `LAG()` + `DATE_TRUNC()`
+* **Business Value:** Tracks monthly sales trajectories and calculates exact percentage growth or contraction compared to the prior month.
+
+### 3. Running Cumulative Total Revenue by Region
+* **Technique:** `SUM() OVER (PARTITION BY ... ORDER BY ...)`
+* **Business Value:** Monitors real-time sales accumulation over time across geographic zones.
+
+### 4. Top 3 High-Value Customers Per Region
+* **Technique:** Multiple `CTEs` + `ROW_NUMBER()`
+* **Business Value:** Isolates regional VIP accounts for targeted marketing and customer retention programs.
+
+### 5. Customer Revenue Quartile Segmentation
+* **Technique:** `NTILE(4)`
+* **Business Value:** Divides customer base into 4 spending quartiles to evaluate Customer Lifetime Value (CLV).
+
+---
+
+## 🛠️ Concepts & Tools
+* **Database Engine:** PostgreSQL / Standard ANSI SQL
+* **SQL Techniques:** CTEs, Window Functions, Table Joins, Aggregate Functions, Window Frame Specifications (`ROWS BETWEEN`).
+
+---
+
+## 📁 Repository Structure
